@@ -194,11 +194,13 @@ ElevatedButton(
 
 ## 🛠 Troubleshooting
 
-**Q: The scan is not finding any devices.**
-A: Ensure your device has **Location** (GPS) enabled and you have granted the Location permission. On Android 12+, ensure the `BLUETOOTH_SCAN` permission is granted.
+### ❓ Q: The scan is not finding any devices.
+**Ans:** Ensure your device has **Location** (GPS) enabled and you have granted the Location permission. 
+On Android 12+, ensure the `BLUETOOTH_SCAN` permission is granted.
 
-**Q: The device disconnects after measurement.**
-A: This is intended behavior. The plugin auto-disconnects after 10 seconds of inactivity to save battery and reset the device state for the next user.
+### ❓ Q: The device disconnects after measurement.
+**Ans:** This is intended behavior. The plugin auto-disconnects after 10 seconds of inactivity to save battery and reset the device state for the next user.
 
-**Q: How do I reset the UI?**
-A: Calling `stop()` will immediately force a disconnected state and clear progress. Calling `start()` will also clear previous results before beginning a new scan.
+### ❓ Q: How do I reset the UI?
+**Ans:** Calling `stop()` will immediately force a disconnected state and clear progress. 
+Calling `start()` will also clear previous results before beginning a new scan.
