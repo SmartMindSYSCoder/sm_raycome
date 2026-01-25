@@ -81,9 +81,23 @@ android {
         implementation fileTree(include: ['*.jar'], dir: 'libs')
     }
 
-    repositories {
-        flatDir {
-            dirs 'libs'
+    // Inject this plugin's libs folder into the root project's repositories
+    // so the consuming app can resolve these local AARs.
+    def localLibs = project.file('libs')
+    if (rootProject.allprojects.size() > 0) {
+        rootProject.allprojects {
+            repositories {
+                flatDir {
+                    dirs localLibs
+                }
+            }
+        }
+    } else {
+        // Fallback for when building the plugin standalone (if ever)
+        repositories {
+            flatDir {
+                dirs localLibs
+            }
         }
     }
 
