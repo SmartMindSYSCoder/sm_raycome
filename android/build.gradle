@@ -1,0 +1,102 @@
+group = "com.sm.sm_raycome"
+version = "1.0-SNAPSHOT"
+
+buildscript {
+    ext.kotlin_version = "2.2.20"
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.11.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        // For XSnow library
+        maven { 
+            url 'http://libmsc.xfyun.cn/repository/maven-releases/' 
+            allowInsecureProtocol = true
+        }
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+
+android {
+    namespace = "com.sm.sm_raycome"
+
+    compileSdk = 36
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    sourceSets {
+        main.java.srcDirs += "src/main/kotlin"
+        main.java.srcDirs += "src/main/java"
+        test.java.srcDirs += "src/test/kotlin"
+    }
+
+    defaultConfig {
+        minSdk = 21
+        multiDexEnabled true
+    }
+
+    dependencies {
+        // Flutter plugin core
+        testImplementation("org.jetbrains.kotlin:kotlin-test")
+        testImplementation("org.mockito:mockito-core:5.0.0")
+        
+        // AndroidX
+        implementation 'androidx.appcompat:appcompat:1.7.1'
+        implementation 'com.google.android.material:material:1.13.0'
+        implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
+        implementation 'androidx.multidex:multidex:2.0.1'
+        
+        // RxJava for BLE operations
+        implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+        implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+        implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+        
+        // Nordic BLE Scanner
+        implementation 'no.nordicsemi.android.support.v18:scanner:1.6.0'
+        
+        // Local dependencies
+        implementation(name: 'baseble', ext: 'aar')
+        implementation(name: 'viselog-1.1.2', ext: 'aar')
+        implementation(name: 'xsnow-2.1.9', ext: 'aar')
+        implementation fileTree(include: ['*.jar'], dir: 'libs')
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+
+            testLogging {
+               events "passed", "skipped", "failed", "standardOut", "standardError"
+               outputs.upToDateWhen {false}
+               showStandardStreams = true
+            }
+        }
+    }
+}
+
