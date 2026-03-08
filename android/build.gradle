@@ -85,8 +85,6 @@ android {
         implementation(name: 'xsnow-2.1.9', ext: 'aar')
         
         // JAR dependencies
-        implementation(name: 'rxjava-2.2.21', ext: 'jar')
-        implementation 'org.reactivestreams:reactive-streams:1.0.3'
         implementation(name: 'serialcontrol', ext: 'jar')
     }
 
