@@ -19,11 +19,11 @@ allprojects {
         google()
         mavenCentral()
         // For XSnow library
-        maven { 
-            url 'http://libmsc.xfyun.cn/repository/maven-releases/' 
-            allowInsecureProtocol = true
-        }
-        maven { url 'https://jitpack.io' }
+        // maven { 
+        //     url 'http://libmsc.xfyun.cn/repository/maven-releases/' 
+        //     allowInsecureProtocol = true
+        // }
+        // maven { url 'https://jitpack.io' }
     }
 }
 
@@ -75,7 +75,10 @@ android {
         implementation(name: 'baseble', ext: 'aar')
         implementation(name: 'viselog-1.1.2', ext: 'aar')
         implementation(name: 'xsnow-2.1.9', ext: 'aar')
-        implementation fileTree(include: ['*.jar'], dir: 'libs')
+        
+        // JAR dependencies
+        implementation(name: 'rxjava-2.2.21', ext: 'jar')
+        implementation(name: 'serialcontrol', ext: 'jar')
     }
 
     // Inject this plugin's libs folder into the root project's repositories
