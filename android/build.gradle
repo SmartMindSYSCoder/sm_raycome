@@ -77,7 +77,7 @@ android {
         implementation(name: 'xsnow-2.1.9', ext: 'aar')
         
         // JAR dependencies
-        implementation(name: 'rxjava-2.2.21', ext: 'jar')
+        implementation(name: 'rxjava-2.2.17', ext: 'jar')
         implementation(name: 'serialcontrol', ext: 'jar')
     }
 
